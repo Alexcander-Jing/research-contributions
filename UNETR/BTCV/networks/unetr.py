@@ -76,14 +76,14 @@ class UNETR(nn.Module):
             raise KeyError(f"Position embedding layer of type {pos_embed} is not supported.")
 
         self.num_layers = 12
-        self.patch_size = (16, 16, 16)
+        self.patch_size = (16, 16, 16)  # unetr patches are in the form of 3D patches
         self.feat_size = (
             img_size[0] // self.patch_size[0],
             img_size[1] // self.patch_size[1],
             img_size[2] // self.patch_size[2],
         )
         self.hidden_size = hidden_size
-        self.classification = False
+        self.classification = False  # the classification of the transformer head
         self.vit = ViT(
             in_channels=in_channels,
             img_size=img_size,
